@@ -1,0 +1,1112 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BakGüven — Önce Bak, Sonra Güven</title>
+  <meta name="description" content="Şüpheli mesaj ve linkleri para göndermeden önce kontrol edin. Yapay zeka destekli dolandırıcılık tespiti.">
+  <meta property="og:title" content="BakGüven — Önce Bak, Sonra Güven">
+  <meta property="og:description" content="Şüpheli mesaj ve linkleri para göndermeden önce kontrol edin.">
+  <meta property="og:image" content="assets/logo.png">
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --blue: #1A73E8;
+      --blue-dark: #0D47A1;
+      --blue-light: #E8F0FE;
+      --green: #0F9D58;
+      --red: #DC2626;
+      --amber: #F29900;
+      --bg: #F0F4FF;
+      --white: #FFFFFF;
+      --text: #1A1A2E;
+      --text-muted: #5F6368;
+      --radius: 20px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(26,115,232,0.1);
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+    }
+
+    .nav-logo span {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text);
+    }
+
+    .nav-cta {
+      background: var(--blue);
+      color: white;
+      text-decoration: none;
+      padding: 10px 20px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 14px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(26,115,232,0.4);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(135deg, #0D47A1 0%, #1A73E8 50%, #1565C0 100%);
+      position: relative;
+      overflow: hidden;
+      padding: 100px 24px 60px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -20%;
+      width: 600px;
+      height: 600px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50%;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -30%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 50%;
+    }
+
+    .hero-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: white;
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 24px;
+    }
+
+    .hero-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(36px, 5vw, 60px);
+      font-weight: 900;
+      color: white;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero-title span {
+      color: #7BC8FF;
+    }
+
+    .hero-subtitle {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: white;
+      color: var(--blue-dark);
+      text-decoration: none;
+      padding: 16px 28px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 16px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+    }
+
+    .btn-primary img {
+      width: 24px;
+      height: 24px;
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      text-decoration: none;
+      padding: 16px 24px;
+      border-radius: 14px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: background 0.2s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.25);
+    }
+
+    .hero-phones {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      align-items: flex-end;
+    }
+
+    .phone-mockup {
+      width: 200px;
+      background: white;
+      border-radius: 32px;
+      padding: 12px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+      transform: perspective(1000px) rotateY(-5deg);
+      transition: transform 0.3s;
+    }
+
+    .phone-mockup:hover {
+      transform: perspective(1000px) rotateY(0deg) translateY(-8px);
+    }
+
+    .phone-mockup.second {
+      transform: perspective(1000px) rotateY(-8deg) translateY(30px);
+      opacity: 0.85;
+    }
+
+    .phone-mockup.second:hover {
+      transform: perspective(1000px) rotateY(0deg) translateY(22px);
+      opacity: 1;
+    }
+
+    .phone-screen {
+      background: #F0F4FF;
+      border-radius: 22px;
+      overflow: hidden;
+      aspect-ratio: 9/19;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .phone-header {
+      background: linear-gradient(135deg, #1A73E8, #0D47A1);
+      padding: 16px 14px 20px;
+      color: white;
+    }
+
+    .phone-header-logo {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .phone-header-logo-icon {
+      width: 24px;
+      height: 24px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+
+    .phone-header-logo span {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 13px;
+    }
+
+    .phone-slogan {
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .phone-body {
+      padding: 12px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .phone-card {
+      background: white;
+      border-radius: 12px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .phone-card-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    .phone-card-text strong {
+      display: block;
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .phone-card-text span {
+      font-size: 9px;
+      color: var(--text-muted);
+    }
+
+    .phone-result {
+      background: #FFF5F5;
+      border: 1px solid #FECACA;
+      border-radius: 12px;
+      padding: 10px 12px;
+      margin-top: 4px;
+    }
+
+    .phone-result-title {
+      font-size: 11px;
+      font-weight: 800;
+      color: #DC2626;
+      margin-bottom: 4px;
+    }
+
+    .phone-result-item {
+      font-size: 9px;
+      color: #7F1D1D;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 2px;
+    }
+
+    /* STATS */
+    .stats {
+      background: white;
+      padding: 48px 24px;
+    }
+
+    .stats-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 42px;
+      font-weight: 900;
+      color: var(--blue);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.4;
+    }
+
+    /* HOW IT WORKS */
+    .how {
+      padding: 80px 24px;
+      background: var(--bg);
+    }
+
+    .section-label {
+      display: inline-block;
+      background: var(--blue-light);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 6px 14px;
+      border-radius: 100px;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .section-sub {
+      font-size: 16px;
+      color: var(--text-muted);
+      max-width: 500px;
+      line-height: 1.6;
+    }
+
+    .how-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .how-header {
+      margin-bottom: 48px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .step {
+      background: white;
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      position: relative;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .step:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+    }
+
+    .step-number {
+      font-family: 'Outfit', sans-serif;
+      font-size: 64px;
+      font-weight: 900;
+      color: var(--blue-light);
+      line-height: 1;
+      margin-bottom: 16px;
+    }
+
+    .step-emoji {
+      font-size: 36px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .step-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* FEATURES */
+    .features {
+      padding: 80px 24px;
+      background: white;
+    }
+
+    .features-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .features-header {
+      margin-bottom: 48px;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .feature-card {
+      border-radius: var(--radius);
+      padding: 32px;
+      transition: transform 0.2s;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .feature-card.blue { background: var(--blue-light); }
+    .feature-card.green { background: #F0FFF4; }
+    .feature-card.amber { background: #FFFBEB; }
+    .feature-card.red { background: #FFF5F5; }
+
+    .feature-icon {
+      font-size: 40px;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .feature-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .feature-card.blue .feature-title { color: var(--blue-dark); }
+    .feature-card.green .feature-title { color: #065F46; }
+    .feature-card.amber .feature-title { color: #92400E; }
+    .feature-card.red .feature-title { color: #7F1D1D; }
+
+    .feature-desc {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--text-muted);
+    }
+
+    /* SCAM TYPES */
+    .scams {
+      padding: 80px 24px;
+      background: var(--bg);
+    }
+
+    .scams-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .scams-header {
+      margin-bottom: 48px;
+    }
+
+    .scam-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .scam-tag {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: white;
+      border-radius: 100px;
+      padding: 10px 20px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .scam-tag.red { border-color: #FECACA; }
+    .scam-tag.amber { border-color: #FDE68A; }
+
+    /* PRIVACY */
+    .privacy-section {
+      padding: 80px 24px;
+      background: white;
+    }
+
+    .privacy-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .privacy-items {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .privacy-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding: 16px;
+      background: var(--bg);
+      border-radius: 14px;
+    }
+
+    .privacy-icon {
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .privacy-text strong {
+      display: block;
+      font-weight: 600;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+
+    .privacy-text span {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .privacy-visual {
+      background: linear-gradient(135deg, #0D47A1, #1A73E8);
+      border-radius: 24px;
+      padding: 40px;
+      color: white;
+      text-align: center;
+    }
+
+    .privacy-visual-icon {
+      font-size: 64px;
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .privacy-visual h3 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .privacy-visual p {
+      font-size: 14px;
+      opacity: 0.8;
+      line-height: 1.6;
+    }
+
+    /* CTA */
+    .cta {
+      padding: 100px 24px;
+      background: linear-gradient(135deg, #0D47A1, #1A73E8);
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 900;
+      color: white;
+      margin-bottom: 16px;
+    }
+
+    .cta p {
+      font-size: 18px;
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 40px;
+    }
+
+    .cta-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .play-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: white;
+      color: var(--text);
+      text-decoration: none;
+      padding: 18px 32px;
+      border-radius: 16px;
+      font-weight: 700;
+      font-size: 16px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .play-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    }
+
+    .play-btn-text {
+      text-align: left;
+    }
+
+    .play-btn-text small {
+      display: block;
+      font-size: 11px;
+      font-weight: 400;
+      color: var(--text-muted);
+    }
+
+    .play-btn-text strong {
+      display: block;
+      font-size: 16px;
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--text);
+      color: rgba(255,255,255,0.7);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .footer-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .footer-logo span {
+      font-family: 'Outfit', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: white;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 14px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-copy {
+      font-size: 13px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .hero-phones {
+        order: -1;
+      }
+
+      .phone-mockup.second {
+        display: none;
+      }
+
+      .phone-mockup {
+        width: 160px;
+        transform: none;
+      }
+
+      .stats-inner {
+        grid-template-columns: 1fr;
+        gap: 24px;
+      }
+
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .privacy-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .privacy-visual {
+        order: -1;
+      }
+    }
+
+    /* ANIMATIONS */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-content > * {
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-content > *:nth-child(1) { animation-delay: 0.1s; }
+    .hero-content > *:nth-child(2) { animation-delay: 0.2s; }
+    .hero-content > *:nth-child(3) { animation-delay: 0.3s; }
+    .hero-content > *:nth-child(4) { animation-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">
+    <img src="assets/logo.png" alt="BakGüven">
+    <span>BakGüven</span>
+  </a>
+  <a href="#indir" class="nav-cta">Ücretsiz İndir</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">
+        🇹🇷 Türkiye'ye Özel · Yapay Zeka Destekli
+      </div>
+      <h1 class="hero-title">
+        Dolandırılmadan<br>önce <span>kontrol et.</span>
+      </h1>
+      <p class="hero-subtitle">
+        Şüpheli mesaj veya link mi gördün? Para göndermeden önce bize göster. Saniyeler içinde analiz edelim.
+      </p>
+      <div class="hero-buttons">
+        <a href="#indir" class="btn-primary">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" fill="#1A73E8"/>
+            <polyline points="9 22 9 12 15 12 15 22" fill="white"/>
+          </svg>
+          Google Play'den İndir
+        </a>
+        <a href="#nasil" class="btn-secondary">
+          Nasıl Çalışır? ↓
+        </a>
+      </div>
+    </div>
+    <div class="hero-phones">
+      <div class="phone-mockup">
+        <div class="phone-screen">
+          <div class="phone-header">
+            <div class="phone-header-logo">
+              <div class="phone-header-logo-icon">🛡️</div>
+              <span>BakGüven</span>
+            </div>
+            <div class="phone-slogan">Önce Bak,<br>Sonra Güven.</div>
+          </div>
+          <div class="phone-body">
+            <div class="phone-card">
+              <div class="phone-card-icon" style="background:#E8F0FE">📸</div>
+              <div class="phone-card-text">
+                <strong>Sohbet Tara</strong>
+                <span>Ekran görüntüsü seç</span>
+              </div>
+            </div>
+            <div class="phone-card">
+              <div class="phone-card-icon" style="background:#F0FFF4">🔗</div>
+              <div class="phone-card-text">
+                <strong>Link Kontrol Et</strong>
+                <span>Şüpheli linki yapıştır</span>
+              </div>
+            </div>
+            <div class="phone-result">
+              <div class="phone-result-title">❌ Yüksek Risk</div>
+              <div class="phone-result-item">⚠️ Sahte domain tespit edildi</div>
+              <div class="phone-result-item">⚠️ Acil ödeme baskısı var</div>
+              <div class="phone-result-item">⚠️ Platform dışı yönlendirme</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="phone-mockup second">
+        <div class="phone-screen">
+          <div class="phone-header">
+            <div class="phone-header-logo">
+              <div class="phone-header-logo-icon">🛡️</div>
+              <span>BakGüven</span>
+            </div>
+            <div class="phone-slogan">Analiz Sonucu</div>
+          </div>
+          <div class="phone-body">
+            <div class="phone-result" style="background:#F0FFF4; border-color:#BBF7D0;">
+              <div class="phone-result-title" style="color:#0F9D58;">✅ Güvenli Görünüyor</div>
+              <div class="phone-result-item" style="color:#065F46;">✓ Bilinen risk kalıbı yok</div>
+              <div class="phone-result-item" style="color:#065F46;">✓ Ödeme baskısı yok</div>
+            </div>
+            <div class="phone-card">
+              <div class="phone-card-icon" style="background:#FEF3C7">👍</div>
+              <div class="phone-card-text">
+                <strong>Evet, doğru</strong>
+                <span>Geri bildirim ver</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-inner">
+    <div>
+      <div class="stat-number">%99.8</div>
+      <div class="stat-label">Ekran görüntüleri<br>cihazınızda kalır</div>
+    </div>
+    <div>
+      <div class="stat-number">3sn</div>
+      <div class="stat-label">Ortalama analiz<br>süresi</div>
+    </div>
+    <div>
+      <div class="stat-number">50+</div>
+      <div class="stat-label">Türkiye'ye özel<br>dolandırıcılık kalıbı</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how" id="nasil">
+  <div class="how-inner">
+    <div class="how-header">
+      <span class="section-label">Nasıl Çalışır?</span>
+      <h2 class="section-title">3 adımda güvende kal</h2>
+      <p class="section-sub">Karmaşık bir şey yok. Ekran görüntüsü seç, analiz et, sonucu gör.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="step-number">01</div>
+        <span class="step-emoji">📸</span>
+        <h3 class="step-title">Ekran Görüntüsü Seç</h3>
+        <p class="step-desc">WhatsApp, SMS, Instagram, Sahibinden veya herhangi bir mesajlaşma ekranının görüntüsünü galerinden seç. Görüntü cihazından çıkmaz.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">02</div>
+        <span class="step-emoji">🤖</span>
+        <h3 class="step-title">Yapay Zeka Analiz Eder</h3>
+        <p class="step-desc">Uygulama görüntüdeki metni cihazında okur, Türkiye'ye özel dolandırıcılık kalıplarıyla karşılaştırır ve risk analizi yapar.</p>
+      </div>
+      <div class="step">
+        <div class="step-number">03</div>
+        <span class="step-emoji">✅</span>
+        <h3 class="step-title">Net Sonuç Al</h3>
+        <p class="step-desc">Güvenli, Şüpheli veya Yüksek Risk. Neden şüpheli olduğunu madde madde görürsün. Para göndermeden önce karar ver.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="features-inner">
+    <div class="features-header">
+      <span class="section-label">Özellikler</span>
+      <h2 class="section-title">Her şüpheli mesaj için</h2>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card blue">
+        <span class="feature-icon">📱</span>
+        <h3 class="feature-title">Sohbet Tara</h3>
+        <p class="feature-desc">WhatsApp, SMS, Instagram DM, Facebook Marketplace, Sahibinden — hangi platformdan olursa olsun ekran görüntüsünü analiz et.</p>
+      </div>
+      <div class="feature-card green">
+        <span class="feature-icon">🔗</span>
+        <h3 class="feature-title">Link Kontrol Et</h3>
+        <p class="feature-desc">Şüpheli bağlantıyı yapıştır. Sahte PTT, e-Devlet, banka, kargo linklerini tespit eder. Domain sahteciliğini yakalar.</p>
+      </div>
+      <div class="feature-card amber">
+        <span class="feature-icon">🏷️</span>
+        <h3 class="feature-title">Dolandırıcılık Türü</h3>
+        <p class="feature-desc">Sadece risk vermekle kalmaz. Kapora dolandırıcılığı mı, sahte kargo mu, kripto tuzağı mı — tam olarak söyler.</p>
+      </div>
+      <div class="feature-card red">
+        <span class="feature-icon">🔒</span>
+        <h3 class="feature-title">Gizlilik Öncelikli</h3>
+        <p class="feature-desc">Ekran görüntüleri cihazınızdan çıkmaz. OCR cihazda çalışır. Sunucuya sadece metin gönderilir. Kişisel veri saklanmaz.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCAM TYPES -->
+<section class="scams">
+  <div class="scams-inner">
+    <div class="scams-header">
+      <span class="section-label">Türkiye'ye Özel</span>
+      <h2 class="section-title">Tanıdığımız dolandırıcılıklar</h2>
+      <p class="section-sub">Türkiye'de en sık görülen dolandırıcılık kalıplarını biliyoruz.</p>
+    </div>
+    <div class="scam-tags">
+      <div class="scam-tag red">❌ Kapora Dolandırıcılığı</div>
+      <div class="scam-tag red">❌ Sahte PTT / Kargo SMS</div>
+      <div class="scam-tag red">❌ Sahte Banka Bildirimi</div>
+      <div class="scam-tag red">❌ Sahte e-Devlet Linki</div>
+      <div class="scam-tag red">❌ Polis / Savcı Taklidi</div>
+      <div class="scam-tag red">❌ Kripto Yatırım Tuzağı</div>
+      <div class="scam-tag amber">⚠️ "Şehir Dışındayım" Dolandırıcılığı</div>
+      <div class="scam-tag amber">⚠️ Platform Dışı Ödeme Baskısı</div>
+      <div class="scam-tag amber">⚠️ Çekiliş / Ödül Dolandırıcılığı</div>
+      <div class="scam-tag amber">⚠️ Sahte Müşteri Hizmetleri</div>
+      <div class="scam-tag amber">⚠️ "Kimseye Söyleme" Uyarısı</div>
+      <div class="scam-tag amber">⚠️ Acele Ettirme Baskısı</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY -->
+<section class="privacy-section">
+  <div class="privacy-inner">
+    <div>
+      <span class="section-label">Gizlilik</span>
+      <h2 class="section-title">Verileriniz güvende</h2>
+      <p class="section-sub">BakGüven gizliliğinize saygı duyar. Hiçbir kişisel veri saklanmaz.</p>
+      <div class="privacy-items">
+        <div class="privacy-item">
+          <span class="privacy-icon">📷</span>
+          <div class="privacy-text">
+            <strong>Ekran görüntüsü cihazdan çıkmaz</strong>
+            <span>Görüntü sunucuya gönderilmez. OCR işlemi telefonunuzda yapılır.</span>
+          </div>
+        </div>
+        <div class="privacy-item">
+          <span class="privacy-icon">👤</span>
+          <div class="privacy-text">
+            <strong>Anonim kullanım</strong>
+            <span>Hesap açmanıza gerek yok. Kimliğiniz bilinmez.</span>
+          </div>
+        </div>
+        <div class="privacy-item">
+          <span class="privacy-icon">🗑️</span>
+          <div class="privacy-text">
+            <strong>Veri saklanmaz</strong>
+            <span>Analiz edilen metinler kayıt edilmez. Gizlilik politikamıza bakın.</span>
+          </div>
+        </div>
+        <div class="privacy-item">
+          <span class="privacy-icon">🔐</span>
+          <div class="privacy-text">
+            <strong>Şifreli bağlantı</strong>
+            <span>Tüm veri iletimi HTTPS ile şifrelenir.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="privacy-visual">
+      <span class="privacy-visual-icon">🛡️</span>
+      <h3>Önce Bak,<br>Sonra Güven.</h3>
+      <p>Türkiye'de her gün binlerce kişi dolandırıcılığa maruz kalıyor. BakGüven, para göndermeden önce düşünmenizi sağlar.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="indir">
+  <h2>Hemen indir, ücretsiz kullan</h2>
+  <p>Reklam yok. Abonelik yok. Tamamen ücretsiz.</p>
+  <div class="cta-buttons">
+    <a href="https://play.google.com/store/apps/details?id=com.bakguven.app" class="play-btn">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+        <path d="M3 20.5v-17c0-.83 1.01-1.3 1.7-.77l14 8.5c.62.38.62 1.16 0 1.54l-14 8.5c-.69.53-1.7.06-1.7-.77z" fill="#1A73E8"/>
+      </svg>
+      <div class="play-btn-text">
+        <small>Google Play'den İndir</small>
+        <strong>BakGüven</strong>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="assets/logo.png" alt="BakGüven" width="28" height="28" style="border-radius:8px;">
+      <span>BakGüven</span>
+    </div>
+    <div class="footer-links">
+      <a href="/privacy">Gizlilik Politikası</a>
+      <a href="mailto:destek@bakguven.com">İletişim</a>
+    </div>
+    <p class="footer-copy">© 2026 BakGüven. Tüm hakları saklıdır. Türkiye'de geliştirildi 🇹🇷</p>
+  </div>
+</footer>
+
+</body>
+</html>

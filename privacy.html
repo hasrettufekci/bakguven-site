@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gizlilik Politikası — BakGüven</title>
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #F0F4FF;
+      color: #1A1A2E;
+      line-height: 1.7;
+    }
+    nav {
+      background: white;
+      border-bottom: 1px solid #E8F0FE;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    nav a {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #1A1A2E;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 800;
+      font-size: 18px;
+    }
+    nav img { width: 32px; border-radius: 8px; }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+    .header {
+      background: linear-gradient(135deg, #0D47A1, #1A73E8);
+      color: white;
+      padding: 60px 24px;
+      text-align: center;
+      margin-bottom: 0;
+    }
+    .header h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .header p { opacity: 0.8; font-size: 15px; }
+    .content {
+      background: white;
+      border-radius: 20px;
+      padding: 48px;
+      margin-top: 32px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+    h2 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #1A73E8;
+      margin: 32px 0 12px;
+      padding-top: 20px;
+      border-top: 1px solid #E8F0FE;
+    }
+    h2:first-child { border-top: none; margin-top: 0; padding-top: 0; }
+    p { margin-bottom: 12px; font-size: 15px; color: #3C4043; }
+    ul { margin: 12px 0 16px 20px; }
+    li { margin-bottom: 6px; font-size: 15px; color: #3C4043; }
+    strong { color: #1A1A2E; }
+    .highlight {
+      background: #E8F0FE;
+      border-left: 4px solid #1A73E8;
+      padding: 16px 20px;
+      border-radius: 0 10px 10px 0;
+      margin: 20px 0;
+      font-size: 14px;
+      color: #0D47A1;
+    }
+    footer {
+      text-align: center;
+      padding: 32px;
+      color: #5F6368;
+      font-size: 13px;
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a href="/">
+    <img src="assets/logo.png" alt="BakGüven">
+    BakGüven
+  </a>
+</nav>
+
+<div class="header">
+  <h1>Gizlilik Politikası</h1>
+  <p>Son güncelleme: 29 Mayıs 2026</p>
+</div>
+
+<div class="container">
+  <div class="content">
+
+    <div class="highlight">
+      BakGüven, kullanıcı gizliliğini en yüksek öncelik olarak benimser. Ekran görüntüleriniz hiçbir zaman cihazınızdan çıkmaz.
+    </div>
+
+    <h2>1. Genel Bakış</h2>
+    <p>BakGüven ("uygulama"), kullanıcıların şüpheli mesaj ve bağlantıları analiz etmesine yardımcı olan bir risk değerlendirme uygulamasıdır. Bu gizlilik politikası, hangi verileri topladığımızı, nasıl kullandığımızı ve koruduğumuzu açıklar.</p>
+
+    <h2>2. Topladığımız Veriler</h2>
+    <p><strong>Otomatik Toplanan Veriler:</strong></p>
+    <ul>
+      <li><strong>Anonim Kullanıcı Kimliği:</strong> Firebase Authentication aracılığıyla anonim kimlik oluşturulur. Kişisel bilgi içermez.</li>
+      <li><strong>Günlük Kullanım Sayacı:</strong> Günlük analiz limitini takip etmek için anonim ID üzerinden sayım tutulur.</li>
+    </ul>
+    <p><strong>Kullanıcının Sağladığı Veriler:</strong></p>
+    <ul>
+      <li><strong>OCR Metni:</strong> Ekran görüntüsünden cihazda çıkarılan metin, analiz için sunucuya gönderilir. Görüntünün kendisi gönderilmez.</li>
+      <li><strong>Linkler:</strong> Analiz için yapıştırılan URL adresleri.</li>
+      <li><strong>Geri Bildirim:</strong> "Bu analiz doğru muydu?" sorusuna verilen yanıt anonim olarak kaydedilir.</li>
+    </ul>
+    <p><strong>Toplamadığımız Veriler:</strong></p>
+    <ul>
+      <li>Ad, soyad, telefon, e-posta gibi kişisel bilgiler</li>
+      <li>Konum bilgisi</li>
+      <li>Cihaz kişileri veya mesajlar</li>
+      <li>Ekran görüntüleri (yalnızca içindeki metin işlenir)</li>
+      <li>Ödeme bilgileri</li>
+    </ul>
+
+    <h2>3. Verilerin Kullanımı</h2>
+    <ul>
+      <li>Dolandırıcılık risk analizi yapmak</li>
+      <li>Günlük kullanım limitini yönetmek</li>
+      <li>Uygulama kalitesini iyileştirmek</li>
+      <li>Türkiye'ye özel dolandırıcılık kalıplarını geliştirmek</li>
+    </ul>
+
+    <h2>4. Üçüncü Taraf Hizmetler</h2>
+    <p><strong>Google Firebase:</strong> Anonim kimlik yönetimi, veri depolama ve backend işlemleri için kullanılır. <a href="https://firebase.google.com/support/privacy" style="color:#1A73E8;">Gizlilik politikası</a></p>
+    <p><strong>Anthropic (Claude AI):</strong> Metin analizi için kullanılır. <a href="https://www.anthropic.com/privacy" style="color:#1A73E8;">Gizlilik politikası</a></p>
+    <p><strong>Google ML Kit:</strong> OCR işlemleri tamamen cihazda gerçekleştirilir. Herhangi bir veri Google'a gönderilmez.</p>
+
+    <h2>5. Veri Güvenliği</h2>
+    <ul>
+      <li>Tüm veriler şifreli bağlantı (HTTPS) üzerinden iletilir</li>
+      <li>Ekran görüntüleri hiçbir zaman sunucularımıza yüklenmez</li>
+      <li>Kişisel veri saklanmaz</li>
+      <li>Geri bildirim verileri anonim tutulur</li>
+      <li>Veriler üçüncü taraflarla pazarlama amaçlı paylaşılmaz</li>
+    </ul>
+
+    <h2>6. Galeri İzni</h2>
+    <p>Uygulama, yalnızca siz seçtiğinizde ekran görüntüsüne erişir. Bu izin arka planda kullanılmaz, otomatik tarama yapmaz ve yalnızca seçtiğiniz görüntüyü işler.</p>
+
+    <h2>7. Çocukların Gizliliği</h2>
+    <p>BakGüven 13 yaşın altındaki çocuklara yönelik değildir ve bu yaş grubundan bilerek veri toplamaz.</p>
+
+    <h2>8. Veri Saklama Süresi</h2>
+    <ul>
+      <li>Kullanım sayacı: 30 gün sonra otomatik silinir</li>
+      <li>Geri bildirim verileri: Anonim olarak en fazla 2 yıl saklanır</li>
+      <li>Analiz geçmişi: Saklanmaz</li>
+    </ul>
+
+    <h2>9. Kullanıcı Hakları (KVKK)</h2>
+    <p>Türkiye Kişisel Verilerin Korunması Kanunu kapsamında verilerinizin işlenip işlenmediğini öğrenme, bilgi talep etme, silinmesini ve düzeltilmesini talep etme haklarına sahipsiniz.</p>
+    <p>Talepleriniz için: <strong>destek@bakguven.com</strong></p>
+
+    <h2>10. Değişiklikler</h2>
+    <p>Bu politika zaman zaman güncellenebilir. Önemli değişikliklerde uygulama içinde bildirim yapılır.</p>
+
+    <h2>11. İletişim</h2>
+    <p>E-posta: <strong>destek@bakguven.com</strong><br>
+    Web: <strong>https://bakguven.com</strong></p>
+
+  </div>
+</div>
+
+<footer>
+  © 2026 BakGüven · <a href="/" style="color:#1A73E8;">Ana Sayfa</a>
+</footer>
+
+</body>
+</html>
